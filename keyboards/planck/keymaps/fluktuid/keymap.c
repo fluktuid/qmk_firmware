@@ -310,12 +310,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           stop_all_notes();
           PLAY_SONG(plover_song);
         #endif
-        layer_off(_RAISE);
-        layer_off(_LOWER);
         layer_off(_ADJUST);
-        layer_off(_NAVI);
-        layer_off(_NEO_Q);
-        layer_off(_MOUSE);
         layer_on(_PLOVER);
         if (!eeconfig_is_enabled()) {
             eeconfig_init();
