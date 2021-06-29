@@ -59,10 +59,6 @@ enum planck_keycodes {
   DE_RSPC,
 };
 
-enum tap_dance_codes {
-  DANCE_0,
-};
-
 enum planck_layers {
   _BASE,
   _LOWER,
@@ -451,59 +447,3 @@ uint32_t layer_state_set_user(uint32_t state) {
     state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
     return update_tri_layer_state(state, _LOWER, _NAVI,  _MOUSE);
 }
-
-typedef struct {
-    bool is_press_action;
-    uint8_t step;
-} tap;
-
-enum {
-    SINGLE_TAP = 1,
-    SINGLE_HOLD,
-    DOUBLE_TAP,
-    DOUBLE_HOLD,
-    DOUBLE_SINGLE_TAP,
-    MORE_TAPS
-};
-
-static tap dance_state[5];
-
-uint8_t dance_step(qk_tap_dance_state_t *state);
-
-uint8_t dance_step(qk_tap_dance_state_t *state) {
-    if (state->count == 1) {
-        if (state->interrupted || !state->pressed) return SINGLE_TAP;
-        else return SINGLE_HOLD;
-    } else if (state->count == 2) {
-        if (state->interrupted) return DOUBLE_SINGLE_TAP;
-        else if (state->pressed) return DOUBLE_HOLD;
-        else return DOUBLE_TAP;
-    }
-    return MORE_TAPS;
-}
-
-
-void dance_0_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_0_reset(qk_tap_dance_state_t *state, void *user_data);
-
-void dance_0_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state[0].step = dance_step(state);
-    switch (dance_state[0].step) {
-        case SINGLE_HOLD: layer_on(5); break;
-        case DOUBLE_TAP: register_code16(KC_CAPSLOCK); break;
-    }
-}
-
-void dance_0_reset(qk_tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state[0].step) {
-        case SINGLE_HOLD: layer_off(5); break;
-        case DOUBLE_TAP: unregister_code16(KC_CAPSLOCK); break;
-    }
-    dance_state[0].step = 0;
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-        [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_0_finished, dance_0_reset),
-};
-
