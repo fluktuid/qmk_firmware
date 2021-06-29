@@ -24,7 +24,7 @@
 #define BP_NDSH_MAC ALGR(KC_8)
 
 enum planck_keycodes {
-  QWERTY = SAFE_RANGE,
+  QWERTZ = EZ_SAFE_RANGE,
   DVORAK,
   COLEMAK,
   WORKMAN,
@@ -37,7 +37,7 @@ enum planck_keycodes {
 };
 
 enum planck_layers {
-  _BASE,
+  _QWERTZ,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -56,7 +56,7 @@ enum planck_layers {
 #define NAVI MO(_NAVI)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_planck_grid(
+  [_QWERTZ] = LAYOUT_planck_grid(
     KC_TAB,            KC_Q,     KC_W,    KC_E,    KC_R,  KC_T,     KC_Y,  KC_U,  KC_I,     KC_O,    KC_P,     KC_BSPACE,
     LT(_NEO_Q,KC_CAPS),KC_A,     KC_S,    KC_D,    KC_F,  KC_G,     KC_H,  KC_J,  KC_K,     KC_L,    DE_SCLN,  DE_HASH,
     KC_LSHIFT,         KC_Z,     KC_X,    KC_C,    KC_V,  KC_B,     KC_N,  KC_M,  KC_COMMA, KC_DOT,  KC_SLASH, KC_RSHIFT, 
@@ -79,9 +79,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_planck_grid(
     _______,     _______, AU_OFF,            AU_ON,            AU_TOG,        PLOVER,     RGB_SPI,            RGB_SPD, KC_BRIGHTNESS_UP,KC_BRIGHTNESS_DOWN, _______, EEPROM_RESET, 
-    _______,     _______, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP,  KC_AUDIO_MUTE, QWERTY, TOGGLE_LAYER_COLOR, RGB_TOG, RGB_VAI,         RGB_VAD,            _______, RESET,          
-    KC_ASON,     _______, MU_ON,             MU_OFF,           MU_TOG,        QWERTY, RGB_RMOD,           RGB_MOD, RGB_SAI,         RGB_SAD,            RGB_SLD, KC_ASOFF,       
-    WEBUSB_PAIR, _______, _______,           _______,          _______,       QWERTY,  KC_NO,              _______, RGB_HUI,         RGB_HUD,            _______, _______
+    _______,     _______, KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP,  KC_AUDIO_MUTE, WORKMAN, TOGGLE_LAYER_COLOR, RGB_TOG, RGB_VAI,         RGB_VAD,            _______, RESET,          
+    KC_ASON,     _______, MU_ON,             MU_OFF,           MU_TOG,        COLEMAK, RGB_RMOD,           RGB_MOD, RGB_SAI,         RGB_SAD,            RGB_SLD, KC_ASOFF,       
+    WEBUSB_PAIR, _______, _______,           _______,          _______,       QWERTZ,  KC_NO,              _______, RGB_HUI,         RGB_HUD,            _______, _______
   ),
 
   [_NAVI] = LAYOUT_planck_grid(
@@ -141,11 +141,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESCAPE,          KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI, KC_RALT, MO(5), KC_ENTER
   ),
 
-  [_WORKMAN] = LAYOUT_planck_grid(
+  /*[_WORKMAN] = LAYOUT_planck_grid(
     KC_TAB,             KC_Q,     KC_D,    KC_R,    KC_W,  KC_B,     KC_J,  KC_F,  KC_U,     KC_P,    KC_COMMA, KC_BSPACE,
     LT(_NEO_Q,KC_CAPS), KC_A,     KC_S,    KC_H,    KC_T,  KC_G,     KC_Y,  KC_N,  KC_E,     KC_O,    KC_I,     DE_SCLN,
     KC_LSHIFT,          KC_Z,     KC_X,    KC_M,    KC_C,  KC_V,     KC_K,  KC_L,  KC_COMMA, KC_DOT,  KC_SLASH, KC_RSHIFT,  
     KC_ESCAPE,          KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,     KC_RALT, MO(5),    KC_ENTER
+  ),*/
+  // BASE duplicate
+  [_WORKMAN] = LAYOUT_planck_grid(
+    KC_TAB,            KC_Q,     KC_W,    KC_E,    KC_R,  KC_T,     KC_Y,  KC_U,  KC_I,     KC_O,    KC_P,     KC_BSPACE,
+    LT(_NEO_Q,KC_CAPS),KC_A,     KC_S,    KC_D,    KC_F,  KC_G,     KC_H,  KC_J,  KC_K,     KC_L,    DE_SCLN,  DE_HASH,
+    KC_LSHIFT,         KC_Z,     KC_X,    KC_C,    KC_V,  KC_B,     KC_N,  KC_M,  KC_COMMA, KC_DOT,  KC_SLASH, KC_RSHIFT, 
+    KC_ESCAPE,         KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,     KC_RALT, MO(5),    KC_ENTER
   ),
 
   [_NEO] = LAYOUT_planck_grid(
@@ -273,34 +280,33 @@ void rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QWERTY:
+    case QWERTZ:
       if (record->event.pressed) {
-        print("mode just switched to qwerty and this is a huge string\n");
-        set_single_persistent_default_layer(_BASE);
+        default_layer_set(_QWERTZ);
       }
       return false;
       break;
     case COLEMAK:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
+        default_layer_set(_COLEMAK);
       }
       return false;
       break;
     case DVORAK:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_DVORAK);
+        default_layer_set(_DVORAK);
       }
       return false;
       break;
     case WORKMAN:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_DVORAK);
+        default_layer_set(_WORKMAN);
       }
       return false;
       break;
     case NEO:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_DVORAK);
+        default_layer_set(_NEO);
       }
       return false;
       break;
