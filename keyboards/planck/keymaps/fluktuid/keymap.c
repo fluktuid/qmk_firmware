@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NAVI] = LAYOUT_planck_grid(
     _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_HOME,       KC_PGDOWN,     KC_PGUP,     KC_END,         _______, _______,
     _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_LEFT,       KC_DOWN,       KC_UP,       KC_RIGHT,       _______, _______,
-    _______, KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15, KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT, _______, _______,
+    _______, KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,  KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT, _______, _______,
     _______, _______, _______, _______, _______, _______, KC_NO,         _______,       _______,     _______,        _______, _______
   ),
 
@@ -99,10 +99,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_MOUSE] = LAYOUT_planck_grid(
-    _______,    _______, _______, _______, _______,       _______, KC_MS_ACCEL2, KC_MS_WH_DOWN, KC_MS_ACCEL1, KC_MS_ACCEL0, _______, _______,
+    _______,    _______, _______, _______, _______,      _______, KC_MS_ACCEL2, KC_MS_WH_DOWN, KC_MS_ACCEL1, KC_MS_ACCEL0, _______, _______,
     _______,    KC_MENU, KC_MYCM, KC_APP, KC_WWW_SEARCH, _______, KC_MS_LEFT,   KC_MS_DOWN,    KC_MS_UP,     KC_MS_RIGHT,  _______, _______,
-    _______,    _______, _______, _______, _______,       _______, _______,      KC_MS_WH_UP,   KC_MS_BTN2,   KC_MS_BTN3,   _______, _______,
-    KC_MS_BTN2, _______, _______, _______, _______,       _______, KC_NO,        _______,       _______,      _______,      _______, KC_MS_BTN1
+    _______,    _______, _______, _______, _______,      _______, _______,      KC_MS_WH_UP,   KC_MS_BTN2,   KC_MS_BTN3,   _______, _______,
+    KC_MS_BTN2, _______, _______, _______, _______,      _______, KC_NO,        _______,       _______,      _______,      _______, KC_MS_BTN1
   ),
 
   /* Colemak
