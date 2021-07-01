@@ -265,31 +265,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTZ:
       if (record->event.pressed) {
-        default_layer_set(_QWERTZ);
+        set_single_persistent_default_layer(_QWERTZ);
       }
       return false;
       break;
     case COLEMAK:
       if (record->event.pressed) {
-        default_layer_set(_COLEMAK);
+        set_single_persistent_default_layer(_COLEMAK);
       }
       return false;
       break;
     case DVORAK:
       if (record->event.pressed) {
-        default_layer_set(_DVORAK);
+        set_single_persistent_default_layer(_DVORAK);
       }
       return false;
       break;
     case WORKMAN:
       if (record->event.pressed) {
-        default_layer_set(_WORKMAN);
+        set_single_persistent_default_layer(_WORKMAN);
       }
       return false;
       break;
     case NEO:
       if (record->event.pressed) {
-        default_layer_set(_NEO);
+        set_single_persistent_default_layer(_NEO);
       }
       return false;
       break;
