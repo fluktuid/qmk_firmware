@@ -39,7 +39,7 @@ enum planck_keycodes {
 enum planck_layers {
   _QWERTZ,
   _DVORAK,
-  _COLEMAK,
+  _COLEMAK_DHM,
   _WORKMAN,
   _NEO,
   _LOWER,
@@ -71,15 +71,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_RAISE] = LAYOUT_planck_grid(
-    DE_CIRC, KC_1,    KC_2,    KC_3,           KC_4,         KC_5,            KC_6,    KC_7,          KC_8,            KC_9,              KC_0,            KC_DELETE,
-    _______, _______, DE_SS,   _______,        DE_MINS,      DE_EQL,          _______, KC_LBRACKET,   KC_RBRACKET,     DE_AE,             DE_OE,           DE_UE,
-    _______, _______, _______, DYN_REC_START2, DYN_REC_STOP, DYN_MACRO_PLAY2, _______, KC_NONUS_HASH, KC_NONUS_BSLASH, KC_PGUP,           KC_PGDOWN,       _______,
-    _______, _______, _______, _______,        _______,      _______,         KC_NO,   _______,       _______,         KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, KC_MEDIA_PLAY_PAUSE
+    DE_CIRC, KC_1,    KC_2,    KC_3,           KC_4,         KC_5,            KC_6,        KC_7,          KC_8,            KC_9,              KC_0,            KC_DELETE,
+    _______, _______, DE_SS,   _______,        DE_MINS,      DE_EQL,          KC_RBRACKET, DE_AE,         DE_OE,           DE_UE,         KC_LBRACKET,     _______,
+    _______, _______, _______, DYN_REC_START2, DYN_REC_STOP, DYN_MACRO_PLAY2, _______,     KC_NONUS_HASH, KC_NONUS_BSLASH, KC_PGUP,           KC_PGDOWN,       _______,
+    _______, _______, _______, _______,        _______,      _______,         KC_NO,       _______,       _______,         KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP, KC_MEDIA_PLAY_PAUSE
   ),
 
   [_ADJUST] = LAYOUT_planck_grid(
-    _______,     DVORAK,  AU_OFF,            AU_ON,            AU_TOG,        COLEMAK,  RGB_SPI,            RGB_SPD, KC_BRIGHTNESS_UP,KC_BRIGHTNESS_DOWN, _______, EEPROM_RESET,
-    _______,     PLOVER,  KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP,  KC_AUDIO_MUTE, WORKMAN,  TOGGLE_LAYER_COLOR, RGB_TOG, RGB_VAI,         RGB_VAD,            _______, RESET,
+    _______,     DVORAK,  AU_OFF,            AU_ON,            AU_TOG,        WORKMAN,  RGB_SPI,            RGB_SPD, KC_BRIGHTNESS_UP,KC_BRIGHTNESS_DOWN, _______, EEPROM_RESET,
+    _______,     PLOVER,  KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP,  KC_AUDIO_MUTE, COLEMAK,  TOGGLE_LAYER_COLOR, RGB_TOG, RGB_VAI,         RGB_VAD,            _______, RESET,
     KC_ASON,     _______, MU_ON,             MU_OFF,           MU_TOG,        NEO,      RGB_RMOD,           RGB_MOD, RGB_SAI,         RGB_SAD,            RGB_SLD, KC_ASOFF,
     WEBUSB_PAIR, _______, _______,           _______,          _______,       QWERTZ,   KC_NO,              _______, RGB_HUI,         RGB_HUD,            _______, _______
   ),
@@ -107,19 +107,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Colemak
    * ,-----------------------------------------------------------------------------------.
-   * | Tab  |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
+   * | Tab  |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
    * |------+------+------+------+------+-------------+------+------+------+------+------|
-   * | Esc  |   A  |   R  |   S  |   T  |   D  |   H  |   N  |   E  |   I  |   O  |  "   |
+   * | Esc  |   A  |   R  |   S  |   T  |   G  |   M  |   N  |   E  |   I  |   O  |  "   |
    * |------+------+------+------+------+------|------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |Enter |
+   * | Shift|   Z  |   X  |   C  |   D  |   V  |   K  |   H  |   ,  |   .  |   /  |Enter |
    * |------+------+------+------+------+------+------+------+------+------+------+------|
    * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
    * `-----------------------------------------------------------------------------------'
    */
-  [_COLEMAK] = LAYOUT_planck_grid(
-    KC_TAB,             KC_Q,     KC_W,    KC_F,    KC_P,  KC_G,     KC_J,  KC_L,  KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-    LT(_NEO_Q,KC_CAPS), KC_A,     KC_R,    KC_S,    KC_T,  KC_D,     KC_H,  KC_N,  KC_E,    KC_I,    KC_O,    KC_QUOT,
-    KC_LSFT,            KC_Z,     KC_X,    KC_C,    KC_V,  KC_B,     KC_K,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSHIFT,
+  [_COLEMAK_DHM] = LAYOUT_planck_grid(
+    KC_TAB,             KC_Q,     KC_W,    KC_F,    KC_P,  KC_B,     KC_J,  KC_L,  KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
+    LT(_NEO_Q,KC_CAPS), KC_A,     KC_R,    KC_S,    KC_T,  KC_G,     KC_M,  KC_N,  KC_E,    KC_I,    KC_O,    KC_QUOT,
+    KC_LSFT,            KC_Z,     KC_X,    KC_C,    KC_D,  KC_V,     KC_K,  KC_H,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSHIFT,
     KC_ESCAPE,          KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,    KC_RALT, MO(5),   KC_ENTER
   ),
 
@@ -271,7 +271,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case COLEMAK:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
+        set_single_persistent_default_layer(_COLEMAK_DHM);
       }
       return false;
       break;
