@@ -34,6 +34,8 @@ enum planck_keycodes {
   RGB_SLD,
   DE_LSPO,
   DE_RSPC,
+  KC_LSHIFT_OWN,
+  KC_RSHIFT_OWN,
 };
 
 enum planck_layers {
@@ -57,10 +59,10 @@ enum planck_layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTZ] = LAYOUT_planck_grid(
-    KC_TAB,            KC_Q,     KC_W,    KC_E,    KC_R,  KC_T,     KC_Y,  KC_U,  KC_I,     KC_O,    KC_P,     KC_BSPACE,
-    LT(_NEO_Q,KC_CAPS),KC_A,     KC_S,    KC_D,    KC_F,  KC_G,     KC_H,  KC_J,  KC_K,     KC_L,    DE_SCLN,  DE_HASH,
-    KC_LSHIFT,         KC_Z,     KC_X,    KC_C,    KC_V,  KC_B,     KC_N,  KC_M,  KC_COMMA, KC_DOT,  KC_SLASH, KC_RSHIFT, 
-    KC_ESCAPE,         KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,     KC_RALT, MO(5),    KC_ENTER
+    KC_TAB,        KC_Q,     KC_W,    KC_E,    KC_R,  KC_T,     KC_Y,  KC_U,  KC_I,     KC_O,    KC_P,       KC_BSPACE,
+    MO(_NEO_Q),    KC_A,     KC_S,    KC_D,    KC_F,  KC_G,     KC_H,  KC_J,  KC_K,     KC_L,    DE_SCLN,    DE_HASH,
+    KC_LSHIFT_OWN, KC_Z,     KC_X,    KC_C,    KC_V,  KC_B,     KC_N,  KC_M,  KC_COMMA, KC_DOT,  KC_SLASH,   KC_RSHIFT_OWN,
+    KC_ESCAPE,     KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,     KC_RALT, MO(_NEO_Q), KC_ENTER
   ),
 
   [_LOWER] = LAYOUT_planck_grid(
@@ -117,10 +119,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------'
    */
   [_COLEMAK_DHM] = LAYOUT_planck_grid(
-    KC_TAB,             KC_Q,     KC_W,    KC_F,    KC_P,  KC_B,     KC_J,  KC_L,  KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-    LT(_NEO_Q,KC_CAPS), KC_A,     KC_R,    KC_S,    KC_T,  KC_G,     KC_M,  KC_N,  KC_E,    KC_I,    KC_O,    KC_QUOT,
-    KC_LSFT,            KC_Z,     KC_X,    KC_C,    KC_D,  KC_V,     KC_K,  KC_H,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSHIFT,
-    KC_ESCAPE,          KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,    KC_RALT, MO(5),   KC_ENTER
+    KC_TAB,        KC_Q,     KC_W,    KC_F,    KC_P,  KC_B,     KC_J,  KC_L,  KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
+    MO(_NEO_Q),    KC_A,     KC_R,    KC_S,    KC_T,  KC_G,     KC_M,  KC_N,  KC_E,    KC_I,    KC_O,    KC_QUOT,
+    KC_LSHIFT_OWN, KC_Z,     KC_X,    KC_C,    KC_D,  KC_V,     KC_K,  KC_H,  KC_COMM, KC_DOT,  KC_SLSH, KC_RSHIFT_OWN,
+    KC_ESCAPE,     KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,    KC_RALT, MO(5),   KC_ENTER
   ),
 
   /* Dvorak
@@ -135,24 +137,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------'
    */
   [_DVORAK] = LAYOUT_planck_grid(
-    KC_TAB,             KC_QUOT,  KC_COMM, KC_DOT,  KC_P,  KC_Y,     KC_F,  KC_G,  KC_C, KC_R,    KC_L,  KC_BSPC,
-    LT(_NEO_Q,KC_CAPS), KC_A,     KC_O,    KC_E,    KC_U,  KC_I,     KC_D,  KC_H,  KC_T, KC_N,    KC_S,  KC_SLSH,
-    KC_LSHIFT,          KC_SCLN,  KC_Q,    KC_J,    KC_K,  KC_X,     KC_B,  KC_M,  KC_W, KC_V,    KC_Z,  KC_RSHIFT,
-    KC_ESCAPE,          KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI, KC_RALT, MO(5), KC_ENTER
+    KC_TAB,     KC_QUOT,  KC_COMM, KC_DOT,  KC_P,  KC_Y,     KC_F,  KC_G,  KC_C, KC_R,    KC_L,  KC_BSPC,
+    MO(_NEO_Q), KC_A,     KC_O,    KC_E,    KC_U,  KC_I,     KC_D,  KC_H,  KC_T, KC_N,    KC_S,  KC_SLSH,
+    KC_LSHIFT,  KC_SCLN,  KC_Q,    KC_J,    KC_K,  KC_X,     KC_B,  KC_M,  KC_W, KC_V,    KC_Z,  KC_RSHIFT,
+    KC_ESCAPE,  KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI, KC_RALT, MO(5), KC_ENTER
   ),
 
   [_WORKMAN] = LAYOUT_planck_grid(
-    KC_TAB,             KC_Q,     KC_D,    KC_R,    KC_W,  KC_B,     KC_J,  KC_F,  KC_U,     KC_P,    KC_COMMA, KC_BSPACE,
-    LT(_NEO_Q,KC_CAPS), KC_A,     KC_S,    KC_H,    KC_T,  KC_G,     KC_Y,  KC_N,  KC_E,     KC_O,    KC_I,     DE_SCLN,
-    KC_LSHIFT,          KC_Z,     KC_X,    KC_M,    KC_C,  KC_V,     KC_K,  KC_L,  KC_COMMA, KC_DOT,  KC_SLASH, KC_RSHIFT,  
-    KC_ESCAPE,          KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,     KC_RALT, MO(5),    KC_ENTER
+    KC_TAB,        KC_Q,     KC_D,    KC_R,    KC_W,  KC_B,     KC_J,  KC_F,  KC_U,     KC_P,    KC_COMMA, KC_BSPACE,
+    MO(_NEO_Q),    KC_A,     KC_S,    KC_H,    KC_T,  KC_G,     KC_Y,  KC_N,  KC_E,     KC_O,    KC_I,     DE_SCLN,
+    KC_LSHIFT_OWN, KC_Z,     KC_X,    KC_M,    KC_C,  KC_V,     KC_K,  KC_L,  KC_COMMA, KC_DOT,  KC_SLASH, KC_RSHIFT_OWN,  
+    KC_ESCAPE,     KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,     KC_RALT, MO(5),    KC_ENTER
   ),
 
   [_NEO] = LAYOUT_planck_grid(
-    KC_TAB,             KC_X,     KC_V,    KC_L,    KC_C,  KC_W,     KC_K,  KC_H,  KC_G,     KC_F,    KC_Q,  KC_BSPACE,
-    LT(_NEO_Q,KC_CAPS), KC_U,     KC_I,    KC_A,    KC_E,  KC_O,     KC_S,  KC_N,  KC_R,     KC_T,    KC_D,  KC_Y,
-    KC_LSHIFT,          DE_AE,    DE_OE,   DE_UE,   KC_P,  KC_Z,     KC_B,  KC_M,  KC_COMMA, KC_DOT,  KC_J,  KC_RSHIFT,
-    KC_ESCAPE,          KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,     KC_RALT, MO(5), KC_ENTER
+    KC_TAB,        KC_X,     KC_V,    KC_L,    KC_C,  KC_W,     KC_K,  KC_H,  KC_G,     KC_F,    KC_Q,  KC_BSPACE,
+    MO(_NEO_Q),    KC_U,     KC_I,    KC_A,    KC_E,  KC_O,     KC_S,  KC_N,  KC_R,     KC_T,    KC_D,  KC_Y,
+    KC_LSHIFT_OWN, DE_AE,    DE_OE,   DE_UE,   KC_P,  KC_Z,     KC_B,  KC_M,  KC_COMMA, KC_DOT,  KC_J,  KC_RSHIFT_OWN,
+    KC_ESCAPE,     KC_LCTRL, KC_LALT, KC_LGUI, LOWER, KC_SPACE, KC_NO, RAISE, NAVI,     KC_RALT, MO(5), KC_ENTER
   ),
 
   /* Plover layer (http://opensteno.org)
@@ -261,8 +263,48 @@ void rgb_matrix_indicators_user(void) {
   }
 }
 
+uint8_t shiftActive = 00;
+bool caps = false;
+
+void do_shift_stuff(uint16_t keycode, keyrecord_t *record) {
+  uint16_t kc_shift = 0;
+  uint8_t toggleSelf;
+  bool otherActive;
+  if (keycode == KC_LSHIFT_OWN) {
+    kc_shift = KC_LSHIFT;
+    toggleSelf = 01;
+    otherActive = (shiftActive & 10) > 0;
+  } else if (keycode == KC_RSHIFT_OWN) {
+    kc_shift = KC_RSHIFT;
+    toggleSelf = 10;
+    otherActive = (shiftActive & 01) > 0;
+  } else {
+    return;
+  }
+  if (record->event.pressed) {
+    shiftActive |= toggleSelf;
+    register_code(kc_shift);
+    if (otherActive) {
+      if (!caps) {
+        register_code(KC_CAPS);
+        caps = false;
+      } else {
+        unregister_code(KC_CAPS);
+        caps = true;
+      }
+    }
+  } else {
+    shiftActive &= ~toggleSelf;
+    unregister_code(kc_shift);
+  }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case KC_LSHIFT_OWN:
+    case KC_RSHIFT_OWN:
+      do_shift_stuff(keycode, record);
+      return true;
     case QWERTZ:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTZ);
